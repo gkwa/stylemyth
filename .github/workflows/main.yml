@@ -1,14 +1,12 @@
 "on":
 - push
 jobs:
-  hello_world_job:
+  test:
     runs-on: windows-latest
-    name: A job to say hello
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: actions/hello-world-docker-action@v2
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Choco help
+      uses: crazy-max/ghaction-chocolatey@v2
       with:
-        who-to-greet: Mona the Octocat
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+        args: -h
