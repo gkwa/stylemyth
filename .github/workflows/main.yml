@@ -6,9 +6,11 @@ jobs:
     steps:
     - name: Check docker host release id
       uses: Amadevus/pwsh-script@v2
-      id: my-script
+      id: get-windows-host-version-number
       with:
         script: |
+          [Environment]::OSVersion
+          [System.Environment]::OSVersion.Version
           $PSVersionTable.PSVersion
           (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ReleaseId).ReleaseId
     - run: echo "${{ steps.my-script.outputs.result }}"
