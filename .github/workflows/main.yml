@@ -8,7 +8,9 @@ jobs:
       uses: Amadevus/pwsh-script@v2
       id: my-script
       with:
-        script: (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ReleaseId).ReleaseId
+        script: |
+          $PSVersionTable.PSVersion
+          (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name ReleaseId).ReleaseId
     - run: echo "${{ steps.my-script.outputs.result }}"
     - name: Checkout
       uses: actions/checkout@v3
